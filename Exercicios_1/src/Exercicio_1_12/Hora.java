@@ -21,9 +21,15 @@ public class Hora {
 			return 0;
 		return minuto; 
 	}
-	public Hora(byte hora, byte minuto) {//dois escopos diferentes //Escopo maior variável de instância
+	private byte validaSegundo(byte segundo) {
+		if(segundo > 59)
+			return 0;
+		return segundo; 
+	}
+	public Hora(byte hora, byte minuto, byte segundo) {//dois escopos diferentes //Escopo maior variável de instância
 		this.hora = validaHora(hora);
-		this.minuto = minuto;
+		this.minuto = validaMinuto(minuto);
+		this.segundo = validaSegundo(segundo);
 	}
 	//Polimorfismo
 	public Hora() {				//Construtor Sobrecarregado
@@ -42,6 +48,12 @@ public class Hora {
 	public byte getMinuto() {
 		return minuto;
 	}
+	public void setSegundo(byte seg) {			//Colocar as validações de horário (Consistência)
+		this.segundo = validaSegundo(seg);
+	}
+	public byte getSegundo() {
+		return segundo;
+	}
 	public byte incrementaHora() {//Corrigir a função
 		if(hora!= 24)
 			hora++;
@@ -59,6 +71,6 @@ public class Hora {
 	}
 	
 	public String toString() {
-		return String.format("%02d:%02d", hora, minuto);//Cria uma String nesse formato
+		return String.format("%02d:%02d:%02d", hora, minuto, segundo);//Cria uma String nesse formato
 	}
 }

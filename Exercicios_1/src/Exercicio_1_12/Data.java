@@ -1,10 +1,9 @@
 package Exercicio_1_12;
 import java.util.Scanner;
 public class Data {
-	private byte dia;
-	private byte mes;
-	private short ano;
-	Scanner sc = new Scanner(System.in);
+	public byte dia;
+	public byte mes;
+	public short ano;
 	
 	public Data() {
 		dia = 1;
@@ -18,20 +17,41 @@ public class Data {
 		this.ano = ano;
 	}
 	
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+
 	public String toString() {
 		return String.format("%02d/%02d/%04d", dia, mes, ano);
 	}
-/*	
-	public void LeituraData() {
-		System.out.println("Data");
-		System.out.println("Dia");
-		dia = sc.nextInt();
-		System.out.println("Mes");
-		mes = sc.nextInt();
-		System.out.println("Ano");
-		ano = sc.nextInt();
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ano;
+		result = prime * result + dia;
+		result = prime * result + mes;
+		
+		return result;
 	}
-	public void MostrarData() {
-		System.out.println("Data: " + dia + "/" + mes + "/" + ano);
-	}*/
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Data other = (Data) obj;
+		if (ano != other.ano)
+			return false;
+		if (dia != other.dia)
+			return false;
+		if (mes != other.mes)
+			return false;
+		return true;
+	}
 }

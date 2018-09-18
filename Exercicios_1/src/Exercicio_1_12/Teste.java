@@ -7,18 +7,20 @@ public class Teste {
 		Hora a1 = new Hora();
 		Data b = new Data();
 		
-		a.LeituraHora();
-		a1.LeituraHora();
+		a.incrementaHora();
+		a.incrementaMinuto();
+		a.incrementaMinuto();
+		System.out.printf("%s", a.toString());
 		//b.LeituraData();
 		
 		//a.MostraHora();
 		//b.MostrarData();
-		
+		/*
 		if(a.hora == a1.hora || a.minuto == a1.minuto || a.segundo == a1.segundo) {
 			System.out.println("Horário igual");
 		}else {
 			System.out.println("Horário Diferente");
-		}
+		}*/
 
 	}
 }

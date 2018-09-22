@@ -2,8 +2,8 @@ package Figuras;
 
 
 public class Ponto2D {
-	public double x;
-	public double y;
+	private double x;
+	private double y;
 	
 	public Ponto2D() {
 		this.x = 0.0;

@@ -1,7 +1,7 @@
 package Figuras;
 
 
-public class Retangulo {
+public class Retangulo extends Paralelogramo{
 	private Ponto2D a;
 	private Ponto2D b;
 	private float comprimento;
@@ -48,6 +48,9 @@ public class Retangulo {
 			this.largura = largura;
 		else
 			this.largura = 1;
+	}
+	public String toString() {
+		return String.format("Area do Retangulo: %d", Area());
 	}
 	 
 }

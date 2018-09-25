@@ -6,6 +6,7 @@ public class Passaros {
 	private int gaiola;
 	private int tempoMeses;
 	
+	
 	Passaros(String espec,float val, int gaiola, int meses){
 		this.especie = espec;
 		this.valor = val;
@@ -17,13 +18,6 @@ public class Passaros {
 		valor = 0;
 		gaiola = 0;
 		tempoMeses = 0;
-	}
-	
-	public int QntPassaros() {
-		int total = 0;
-		
-		
-		return total;
 	}
 	public String getEspecie() {
 		return especie;

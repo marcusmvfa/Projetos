@@ -3,20 +3,36 @@ package Passaro;
 import java.util.ArrayList;
 
 public class Sistema_Passaros {
-	ArrayList lista = new ArrayList();
 	
-	Passaros a = new Passaros("Canario", 150, 23 , 10);
+	private int qtdPassaros = 0;
 	
-	lista
+	Passaros[] vetor;
 	
+	Sistema_Passaros(){
+		vetor = new Passaros[4];
+	}
 	
+	public void incluir(Passaros p) {
+		vetor[qtdPassaros] = p;
+		qtdPassaros++;
+	}
 	
-	
-	public int qntEstoque(ArrayList lista) {
-		int total =0;
+	public float valorEstoque() {
+		float valor = 0;
 		
+		for(int i=0; i< qtdPassaros; i++) {
+			valor += vetor[i].getValor();
+		}
+		return valor;
+	}
+	public int velho() {
+		int idoso = 0;
 		
-		
-		return total;
+		for(int i=0;i<qtdPassaros;i++) {
+			if(idoso < vetor[i].getTempoMeses()) {
+				idoso = vetor[i].getTempoMeses();
+			}
+		}
+		return idoso;
 	}
 }

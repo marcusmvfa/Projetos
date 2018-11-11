@@ -2,10 +2,11 @@ package exercicio_10_4;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
 //import edu.udc.psw.CriarArqTexto;
 
-public class Ponto2D{
+public class Ponto2D implements Serializable{
 	private double x;
 	private double y;
 	

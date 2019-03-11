@@ -2,6 +2,8 @@ package exemploLivro;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,6 +12,9 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 //import exemploLivro.MouseDetailsFrame.MouseClickHandler;
 
@@ -23,6 +28,9 @@ public class MouseTrackerFrame extends JFrame {
 	private JLabel statusBar;  //Rótulo que exibe informações de evento
 	ListaEncadeada<Ponto2D> lista = new ListaEncadeada<Ponto2D>();
 	private String details;
+	private JMenuBar menuBar;
+	private JMenuItem mntmSalvar;
+	private JMenuItem menuEntrarPonto;
 	
 	
 	//construtor MouseTrackerFrame configura GUI e 
@@ -32,14 +40,38 @@ public class MouseTrackerFrame extends JFrame {
 		
 		mousePanel = new PaintPanel();
 		mousePanel.setBackground(Color.WHITE);
-		add(mousePanel, BorderLayout.CENTER);
+		getContentPane().add(mousePanel, BorderLayout.CENTER);
 		
 		statusBar = new JLabel("Mouse outside JPanel");
-		add(statusBar, BorderLayout.SOUTH);
+		getContentPane().add(statusBar, BorderLayout.SOUTH);
 		
-		pontoPanel = new PontoPanel();
+		/*pontoPanel = new PontoPanel();
 		pontoPanel.setBackground(Color.WHITE);
-		add(pontoPanel, BorderLayout.WEST);
+		getContentPane().add(pontoPanel, BorderLayout.WEST);*/
+		
+		menuBar = new JMenuBar();
+		menuBar.setToolTipText("Opcoes");
+		setJMenuBar(menuBar);
+		
+		mntmSalvar = new JMenuItem("Salvar");
+		menuBar.add(mntmSalvar);
+		
+		menuEntrarPonto = new JMenuItem("Entrar Ponto");
+		menuBar.add(menuEntrarPonto);
+		
+		menuEntrarPonto.addActionListener(
+				new ActionListener () 
+				{
+					public void actionPerformed(ActionEvent event) {
+						//JOptionPane.showMessageDialog(MouseTrackerFrame.this, "Vuc vuc", "Cliquei", JOptionPane.PLAIN_MESSAGE);
+						double x = Double.parseDouble(JOptionPane.showInputDialog("Entre com a coordenada X:"));
+						double y = Double.parseDouble(JOptionPane.showInputDialog("Entre com a coordenada Y:"));
+						Ponto2D ponto = new Ponto2D(x,y);
+						
+					}
+			
+		});
+		
 		
 		MouseHandler handler = new MouseHandler();
 //		addMouseListener(handler);

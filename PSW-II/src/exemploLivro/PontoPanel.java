@@ -31,8 +31,8 @@ public class PontoPanel{
 	}
 	
 	//public Ponto2D entrarPonto(Ponto2D ponto) {
-	public Ponto2D entrarPonto() {
-		Ponto2D ponto = new Ponto2D();
+	public Ponto entrarPonto() {
+		Ponto ponto = new Ponto();
 		double x = Double.parseDouble(coordX.getText());
 		double y = Double.parseDouble(coordY.getText());
 		String aux = null;

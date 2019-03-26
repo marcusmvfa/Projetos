@@ -17,7 +17,7 @@ public class PaintPanel extends JPanel{
 	
 	//private Point[] points = new Point[ 1000 ];
 	
-	ListaEncadeada<Ponto2D> lista = new ListaEncadeada<Ponto2D>();
+	ListaEncadeada<Ponto> lista = new ListaEncadeada<Ponto>();
 	CriarArqTexto arquivo = new CriarArqTexto();
 	
 	
@@ -27,7 +27,7 @@ public class PaintPanel extends JPanel{
 			public void mouseDragged( MouseEvent event) {
 				//if(pointCount < points.length){
 				//lista.inserirFim(event.getPoint());
-				lista.inserirFim(new Ponto2D(event.getX(), event.getY()));
+				lista.inserirFim(new Ponto(event.getX(), event.getY()));
 				
 					repaint();
 				
@@ -39,8 +39,8 @@ public class PaintPanel extends JPanel{
 		super.paintComponent(g);
 		arquivo.openFile();
 		
-		Iterador<Ponto2D> it = lista.getInicio();
-		Ponto2D ponto;
+		Iterador<Ponto> it = lista.getInicio();
+		Ponto ponto;
 		while((ponto = it.proximo()) != null){
 			arquivo.listaArquivo(lista);
 			g.fillOval((int)ponto.getX(), (int)ponto.getY(), 4, 4);

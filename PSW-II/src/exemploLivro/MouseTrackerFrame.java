@@ -26,7 +26,7 @@ public class MouseTrackerFrame extends JFrame {
 	private JPanel mousePanel; //Painel em que os eventos de mouse ocorrerão
 	private JPanel pontoPanel;
 	private JLabel statusBar;  //Rótulo que exibe informações de evento
-	ListaEncadeada<Ponto2D> lista = new ListaEncadeada<Ponto2D>();
+	ListaEncadeada<Ponto> lista = new ListaEncadeada<Ponto>();
 	private String details;
 	private JMenuBar menuBar;
 	private JMenuItem mntmSalvar;
@@ -66,7 +66,7 @@ public class MouseTrackerFrame extends JFrame {
 						//JOptionPane.showMessageDialog(MouseTrackerFrame.this, "Vuc vuc", "Cliquei", JOptionPane.PLAIN_MESSAGE);
 						double x = Double.parseDouble(JOptionPane.showInputDialog("Entre com a coordenada X:"));
 						double y = Double.parseDouble(JOptionPane.showInputDialog("Entre com a coordenada Y:"));
-						Ponto2D ponto = new Ponto2D(x,y);
+						Ponto ponto = new Ponto(x,y);
 						
 					}
 			
@@ -112,7 +112,7 @@ public class MouseTrackerFrame extends JFrame {
 			statusBar.setText("Mouse outside JPanel");
 			mousePanel.setBackground(Color.WHITE);
 		}
-		public void mouseDragged(MouseEvent event, ListaEncadeada<Ponto2D> lista){
+		public void mouseDragged(MouseEvent event, ListaEncadeada<Ponto> lista){
 			statusBar.setText(String.format("Dragged at [%d , %d] | %d",event.getX(),event.getY(),event.getClickCount()));
 			
 			

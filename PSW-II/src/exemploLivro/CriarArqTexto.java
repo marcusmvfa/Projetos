@@ -17,9 +17,9 @@ public class CriarArqTexto {
 		}		
 	}
 	
-	public void listaArquivo(ListaEncadeada<Ponto2D> lista) {
-		Iterador<Ponto2D> it = lista.getInicio();
-		Ponto2D ponto;
+	public void listaArquivo(ListaEncadeada<Ponto> lista) {
+		Iterador<Ponto> it = lista.getInicio();
+		Ponto ponto;
 		
 		try {
 			while((ponto = it.proximo())!= null) {

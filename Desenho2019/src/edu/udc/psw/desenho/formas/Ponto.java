@@ -31,8 +31,17 @@ public class Ponto {
 		Ponto p = new Ponto(x, y);
 		return p;
 	}
+	public double distancia(Ponto p){
+		return Math.sqrt( (x - p.x)*(x - p.x) + (y - p.y)*(y - p.y));
+	}
 	@Override
 	public String toString(){
 		return String.format("%d %d", x, y);
 	}
+	@Override
+	protected Ponto clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return new Ponto();
+	}
+	
 }

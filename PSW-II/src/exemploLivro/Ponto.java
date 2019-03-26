@@ -4,7 +4,7 @@ package exemploLivro;
 //import edu.udc.psw.modelo.manipulador.ManipuladorLinha;
 //import edu.udc.psw.modelo.manipulador.ManipuladorPonto2D;
 
-public class Ponto2D extends Object{
+public class Ponto extends Object{
  
  private double x;
  private double y;
@@ -25,23 +25,23 @@ public class Ponto2D extends Object{
  return y;
  }
 
- public Ponto2D() {
+ public Ponto() {
  x = 0.0;
  y = 0.0;
  }
  
- public Ponto2D(double x, double y){
+ public Ponto(double x, double y){
  this.x = x;
  this.y = y;
  }
  
  
  @Override
- public Ponto2D clone() {
- return new Ponto2D(x, y);
+ public Ponto clone() {
+ return new Ponto(x, y);
  }
 
- public double distancia(Ponto2D p){
+ public double distancia(Ponto p){
  return Math.sqrt( (x - p.x)*(x - p.x) + (y - p.y)*(y - p.y));
  }
 
@@ -51,7 +51,7 @@ public class Ponto2D extends Object{
  }
 
  //@Override
- public Ponto2D centro() {
+ public Ponto centro() {
  return clone();
  }
 

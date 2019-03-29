@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.udc.psw.desenho.Aplicacao;
+import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.util.Iterator;
 
@@ -43,10 +44,12 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // limpa a área de desenho
 
-		Iterator<Ponto> it = Aplicacao.getAplicacao().getIterator();
-		Ponto ponto;
-		while((ponto = it.next()) != null) {
-			g.fillOval(ponto.x, ponto.y, 4, 4);
+		Iterator<FormaGeometrica> it = Aplicacao.getAplicacao().getIterator();
+		FormaGeometrica formas;
+		//Ponto ponto;
+		while((formas = it.next()) != null) {
+			formas.desenhar(g);
+			//g.fillOval(formas.x, formas.y, 4, 4);
 		}
 		
 //		for(Ponto p : lista)

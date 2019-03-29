@@ -2,6 +2,9 @@ package edu.udc.psw.desenho.formas;
 
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorLinha;
+
+import java.awt.Graphics;
+
 import edu.udc.psw.desenho.formas.Ponto;
 
 public class Linha implements FormaGeometrica {
@@ -13,9 +16,9 @@ public class Linha implements FormaGeometrica {
 		b = new Ponto();
 	}
 
-	public Linha(Ponto a, Ponto b) throws CloneNotSupportedException{
-		this.a = a.clone();
-		this.b = b.clone();
+	public Linha(Ponto a, Ponto b) {
+		this.a = a;
+		this.b = b;
 	}
 	
 	public Linha(int ax, int ay, int bx, int by){
@@ -33,40 +36,37 @@ public class Linha implements FormaGeometrica {
 		return a.distancia(b);
 	}
 	
-	@Override
 	public Ponto centro(){
 		Ponto m = new Ponto((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2);
 		return m;
 	}
 	
-	@Override
 	public double base(){
 		if(a.getX() < b.getX())
 			return b.getX() - a.getX();
 		return a.getX() - b.getX();
 	}
 	
-	@Override
 	public double altura(){
 		if(a.getY() < b.getY())
 			return b.getY() - a.getY();
 		return a.getY() - b.getY();
 	}
 	
-	public Ponto getA() throws CloneNotSupportedException {
-		return a.clone();
+	public Ponto getA() {
+		return a;
 	}
 
-	public Ponto getB() throws CloneNotSupportedException {
-		return b.clone();
+	public Ponto getB() {
+		return b;
 	}
 
-	public void setA(Ponto a) throws CloneNotSupportedException {
-		this.a = a.clone();
+	public void setA(Ponto a) {
+		this.a = a;
 	}
 
-	public void setB(Ponto b) throws CloneNotSupportedException {
-		this.b = b.clone();
+	public void setB(Ponto b)  {
+		this.b = b;
 	}
 
 	@Override
@@ -75,18 +75,27 @@ public class Linha implements FormaGeometrica {
 	}
 
 	@Override
-	public double area() {
-		return 0;
+	public void desenhar(Graphics g) {
+		g.drawLine(a.x, a.y, b.x, b.y);
+		
 	}
-
-	@Override
-	public double perimetro() {
-		return comprimento();
-	}
-
-	@Override
-	public ManipuladorFormaGeometrica getManipulador() {
-		return new ManipuladorLinha(this);
+	
+	public static Linha fabricarLinha(String linha) {
+		int i = linha.indexOf(' ');
+		int x = Integer.parseInt(linha.substring(0, i));
+		linha = linha.substring(i + 1);
+		i = linha.indexOf(' ');
+		int y = Integer.parseInt(linha.substring(0, i));
+		
+		Ponto a = new Ponto(x, y);
+		linha = linha.substring(i+1);
+		i = linha.indexOf(' ');
+		x = Integer.parseInt(linha.substring(0, i));
+		y = Integer.parseInt(linha.substring(0, i));
+		Ponto b = new Ponto(x,y);
+		
+		return new Linha(a, b);
+		
 	}
 
 }

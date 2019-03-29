@@ -2,6 +2,7 @@ package edu.udc.psw.desenho;
 
 import javax.swing.JFrame;
 
+import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.desenho.gui.FrameDesenho;
 import edu.udc.psw.util.Iterator;
@@ -11,16 +12,16 @@ public class Aplicacao {
 
 	private static Aplicacao aplicacao;
 	
-	private LinkedList<Ponto> lista;
+	private LinkedList<FormaGeometrica> lista;
 	
 	public void limparLista() {
 		//removerTudo();
 	}
 	
-	public void inserir(Ponto p) {
+	public void inserir(FormaGeometrica p) {
 		lista.addLast(p);
 	}
-	public Iterator<Ponto> getIterator() {
+	public Iterator<FormaGeometrica> getIterator() {
 		return lista.getFirst();
 	}
 	public int getListSize() {

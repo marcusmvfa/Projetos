@@ -1,6 +1,11 @@
 package edu.udc.psw.desenho.formas;
 
-public class Ponto {
+
+import java.awt.Graphics;
+
+import edu.udc.psw.desenho.formas.FormaGeometrica;
+
+public class Ponto implements FormaGeometrica{
 	public int x;
 	public int y;
 	
@@ -25,8 +30,8 @@ public class Ponto {
 		this.y = y;
 	}
 	public static Ponto fabricarPonto(String ponto) {
-		int i = ponto.indexOf(';');
-		int x = Integer.parseInt(ponto.substring(1, i));
+		int i = ponto.indexOf(' ');
+		int x = Integer.parseInt(ponto.substring(0, i));
 		int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
 		Ponto p = new Ponto(x, y);
 		return p;
@@ -38,10 +43,11 @@ public class Ponto {
 	public String toString(){
 		return String.format("%d %d", x, y);
 	}
+	
 	@Override
-	protected Ponto clone() throws CloneNotSupportedException {
+	public void desenhar(Graphics g) {
 		// TODO Auto-generated method stub
-		return new Ponto();
+		
 	}
 	
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import edu.udc.psw.desenho.Aplicacao;
+import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
@@ -41,13 +42,13 @@ private File file;
 		
 	}
 
-	public void salvarFormas(Iterator<Ponto> it) {
+	public void salvarFormas(Iterator<FormaGeometrica> it) {
 		FileWriter output; // objeto utilizado para gerar saída de texto no arquivo
 		
 		try {
 			output = new FileWriter(file);
 			
-			Ponto forma;
+			FormaGeometrica forma;
 			
 
 			forma = it.data();
@@ -60,5 +61,21 @@ private File file;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
+	}
+	public void lerArquivos() {
+		Scanner leitura = null ;
+		
+		try {
+			leitura = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		while(leitura.hasNext()) {
+			Aplicacao.getAplicacao();
+		}
+		
+		
 	}
 }

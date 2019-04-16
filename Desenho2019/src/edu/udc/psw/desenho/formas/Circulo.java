@@ -1,6 +1,9 @@
 package edu.udc.psw.desenho.formas;
 
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
+
+import java.awt.Graphics;
+
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorCirculo;
 
 public class Circulo implements FormaGeometrica{
@@ -12,9 +15,9 @@ public class Circulo implements FormaGeometrica{
 		b = new Ponto();
 	}
 	
-	public Circulo(Ponto a, Ponto b) throws CloneNotSupportedException {
-		this.a = a.clone();
-		this.b = b.clone();
+	public Circulo(Ponto a, Ponto b){
+		this.a = a;
+		this.b = b;
 	}
 	
 	public Circulo(int ax, int ay, int bx, int by) {
@@ -22,39 +25,39 @@ public class Circulo implements FormaGeometrica{
 		b = new Ponto(bx, by);
 	}
 
-	public Ponto getA() throws CloneNotSupportedException {
-		return a.clone();
+	public Ponto getA(){
+		return a;
 	}
-	public Ponto getB() throws CloneNotSupportedException {
-		return b.clone();
+	public Ponto getB(){
+		return b;
 	}
-	public void setA(Ponto a) throws CloneNotSupportedException {
-		this.a = a.clone();
+	public void setA(Ponto a){
+		this.a = a;
 	}
-	public void setB(Ponto b) throws CloneNotSupportedException {
-		this.b = b.clone();
+	public void setB(Ponto b){
+		this.b = b;
 	}
 
-	@Override
+	
 	public Ponto centro() {
 		return new Ponto(a.getX(),a.getY());
 	}
 
-	@Override
+	
 	public double area() {
 		return Math.PI * (Raio() * Raio());
 	}
-	@Override
+	
 	public double perimetro() {	
 		return Math.PI * Raio();
 	}
 
-	@Override
+	
 	public double base() {	//DIAMETRO
 		return 2 * Math.abs(a.getX() - b.getX());
 	}
 
-	@Override
+
 	public double altura() {
 		return Math.abs((a.getY() - b.getY()) + (a.getX() - b.getX()) /2);
 	}
@@ -62,7 +65,7 @@ public class Circulo implements FormaGeometrica{
 		return Math.PI * base();
 	}
 
-	@Override
+	
 	public ManipuladorFormaGeometrica getManipulador() {
 		return new ManipuladorCirculo(this);
 	}
@@ -70,6 +73,12 @@ public class Circulo implements FormaGeometrica{
 	@Override
 	public Circulo clone() {
 		return new Circulo();
+	}
+
+	@Override
+	public void desenhar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

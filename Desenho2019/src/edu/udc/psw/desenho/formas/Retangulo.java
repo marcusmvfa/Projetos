@@ -1,5 +1,7 @@
 package edu.udc.psw.desenho.formas;
 
+import java.awt.Graphics;
+
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorRetangulo;
 
@@ -12,9 +14,9 @@ public class Retangulo implements FormaGeometrica {
 		b = new Ponto();
 	}
 	
-	public Retangulo(Ponto a, Ponto b) throws CloneNotSupportedException{
-		this.a = a.clone();
-		this.b = b.clone();
+	public Retangulo(Ponto a, Ponto b){
+		this.a = a;
+		this.b = b;
 	}
 	
 	public Retangulo(int ax, int ay, int bx, int by){
@@ -22,20 +24,20 @@ public class Retangulo implements FormaGeometrica {
 		b = new Ponto(bx, by);
 	}
 	
-	public Ponto getA() throws CloneNotSupportedException {
-		return a.clone();
+	public Ponto getA(){
+		return a;
 	}
 
-	public Ponto getB() throws CloneNotSupportedException {
-		return b.clone();
+	public Ponto getB(){
+		return b;
 	}
 
-	public void setA(Ponto a) throws CloneNotSupportedException {
-		this.a = a.clone();
+	public void setA(Ponto a){
+		this.a = a;
 	}
 
-	public void setB(Ponto b) throws CloneNotSupportedException {
-		this.b = b.clone();
+	public void setB(Ponto b){
+		this.b = b;
 	}
 	
 	public Ponto centro(){
@@ -54,18 +56,24 @@ public class Retangulo implements FormaGeometrica {
 		return base() * altura();
 	}
 
-	@Override
+	
 	public double perimetro() {
 		return 2 * base() + 2 * altura();
 	}
 
-	@Override
+	
 	public ManipuladorFormaGeometrica getManipulador() {
 		return new ManipuladorRetangulo(this);
 	}
 
-	@Override
+
 	public Retangulo clone() {
 		return new Retangulo();
+	}
+
+	@Override
+	public void desenhar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

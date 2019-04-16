@@ -1,5 +1,7 @@
 package edu.udc.psw.desenho.formas;
 
+import java.awt.Graphics;
+
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorTriangulo;
 
@@ -13,10 +15,10 @@ public class Triangulo implements FormaGeometrica{
 		b = new Ponto();
 		c = new Ponto();
 	}
-	public Triangulo(Ponto a, Ponto b, Ponto c) throws CloneNotSupportedException {
-		this.a = a.clone();
-		this.b = b.clone();
-		this.c = c.clone();
+	public Triangulo(Ponto a, Ponto b, Ponto c){
+		this.a = a;
+		this.b = b;
+		this.c = c;
 	}
 	public Triangulo(int ax, int ay, int bx, int by, int cx, int cy) {
 		a = new Ponto(ax,ay);
@@ -24,61 +26,61 @@ public class Triangulo implements FormaGeometrica{
 		c = new Ponto(cx,cy);
 	}
 	
-	public Ponto getA() throws CloneNotSupportedException {
-		return a.clone();
+	public Ponto getA(){
+		return a;
 	}
 
-	public void setA(Ponto a) throws CloneNotSupportedException {
-		this.a = a.clone();
+	public void setA(Ponto a){
+		this.a = a;
 	}
 
-	public Ponto getB() throws CloneNotSupportedException {
-		return b.clone();
+	public Ponto getB(){
+		return b;
 	}
 
-	public void setB(Ponto b) throws CloneNotSupportedException {
-		this.b = b.clone();
+	public void setB(Ponto b){
+		this.b = b;
 	}
 
-	public Ponto getC() throws CloneNotSupportedException {
-		return c.clone();
+	public Ponto getC(){
+		return c;
 	}
 
-	public void setC(Ponto c) throws CloneNotSupportedException {
-		this.c = c.clone();
+	public void setC(Ponto c){
+		this.c = c;
 	}
 
-	@Override
+	
 	public Ponto centro() {
 		return a;
 		//return new Ponto2D((a.getX() + b.getX() + c.getX()) / 3, (a.getY() + b.getY() + c.getY()) / 3);//Centro de Massa
 	}
 
-	@Override
+	
 	public double area() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public double perimetro() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public double base() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public double altura() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public ManipuladorFormaGeometrica getManipulador() {
 		// TODO Auto-generated method stub
 		return new ManipuladorTriangulo(this);
@@ -88,6 +90,11 @@ public class Triangulo implements FormaGeometrica{
 	public FormaGeometrica clone() {
 		// TODO Auto-generated method stub
 		return new Triangulo();
+	}
+	@Override
+	public void desenhar(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

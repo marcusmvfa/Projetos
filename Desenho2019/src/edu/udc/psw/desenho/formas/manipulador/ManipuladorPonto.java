@@ -11,12 +11,12 @@ public class ManipuladorPonto implements FormaGeometrica {
 	public ManipuladorPonto(Ponto p) {
 		ponto = p;
 	}
-	
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void desenhar(Graphics g) {
 		g.drawLine((int) ponto.getX(), (int) ponto.getY(), 
 				(int) ponto.getX(), (int) ponto.getY());
+		
 	}
 
 }

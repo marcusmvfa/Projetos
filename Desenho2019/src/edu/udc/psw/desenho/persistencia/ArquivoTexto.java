@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import edu.udc.psw.desenho.Aplicacao;
+import edu.udc.psw.desenho.Documento;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
 
 
-public class ArquivoTexto {
+public class ArquivoTexto implements ArquivoFormas{
 private File file;
 	
 	public ArquivoTexto(File file)
@@ -21,10 +22,9 @@ private File file;
 		this.file = file;
 	}
 
-	public void lerFormas() {
-		Aplicacao.getAplicacao().limparLista();
-		
+	public void lerFormas(Documento doc) {		
 		Scanner input = null;
+		doc.limparLista();
 
 		try {
 			input = new Scanner( file );
@@ -33,7 +33,7 @@ private File file;
 				Ponto forma = Ponto.fabricarPonto(str);
 				
 				
-				Aplicacao.getAplicacao().inserir(forma);
+				doc.inserir(forma);
 			}
 			
 		}  catch (FileNotFoundException e) {

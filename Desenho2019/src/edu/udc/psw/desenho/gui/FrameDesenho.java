@@ -15,16 +15,21 @@ import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.udc.psw.desenho.Aplicacao;
+import edu.udc.psw.desenho.Documento;
+import edu.udc.psw.desenho.formas.Linha;
+import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.desenho.persistencia.ArquivoTexto;
 
 public class FrameDesenho extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	private JTextArea textArea;
+	private PainelTexto textArea;
 	private PainelDesenho painel;
 	private JLabel status;
+	
+	Documento doc;
 
-	public FrameDesenho() {
+	public FrameDesenho(Documento doc) {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -39,34 +44,46 @@ public class FrameDesenho extends JFrame {
 				File f = escolherArquivo(true);
 				if(f == null)
 					return;
-				salvarFormas(f);
+				Aplicacao.getAplicacao().getDocumentAtivo().salvarFormas(f);
 			}
 		});
+		
 		mnArquivo.add(mntmSalvar);
 		
-		JMenuItem mntmLer = new JMenuItem("Ler");
-		mntmLer.setMnemonic('L');
-		mntmLer.addActionListener(new ActionListener() {
+		JMenu mnForma = new JMenu("Formas");
+		mnForma.setMnemonic('F');
+		menuBar.add(mnForma);
+		
+		JMenuItem mntmPonto = new JMenuItem("Ponto");
+		mntmPonto.setMnemonic('P');
+		mntmPonto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File f = escolherArquivo(false);
-				if(f == null)
-					return;
-				lerFormas(f);
+				painel.novaForma(new Ponto());
 			}
 		});
-		mnArquivo.add(mntmLer);
+		mnForma.add(mntmPonto);
 		
+		JMenuItem mntmLinha = new JMenuItem("Linha");
+		mntmLinha.setMnemonic('L');
+		mntmLinha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painel.novaForma(new Linha());
+			}
+		});
+		mnForma.add(mntmLinha);
 		setLayout(new BorderLayout(5, 5)); // configura o layout de frame
 		
-		textArea = new JTextArea(15, 5);
+		textArea = new PainelTexto(doc);
 		textArea.setText("Texto");
 		add(textArea, BorderLayout.WEST);
 	
 		status = new JLabel("linha de mensagem");
 		add(status, BorderLayout.SOUTH);
 
-		painel = new PainelDesenho(status);
+		painel = new PainelDesenho(status, doc);
 		add(painel, BorderLayout.CENTER);
+		
+		doc.adcionarOuvinte(textArea);
 		
 	}
 	
@@ -86,25 +103,5 @@ public class FrameDesenho extends JFrame {
 		return null;
 	}
 	
-	public void salvarFormas(File file) {
-		ArquivoTexto arq = new ArquivoTexto(file);
-
-		//String name = file.getName();
-		//String ext = name.substring(name.lastIndexOf('.') + 1);
-
-		arq.salvarFormas(Aplicacao.getAplicacao().getIterator());
-	}
-
-	// Metodo ContextInterface da classe Context no padrão Strategy
-	public void lerFormas(File file) {
-		ArquivoTexto arq = new ArquivoTexto(file);
-
-		String name = file.getName();
-		String ext = name.substring(name.lastIndexOf('.') + 1);
-
-		//listaFormas = arq.lerFormas();
-		arq.lerFormas();
-
-//		atualizaViews();
-	}
+	
 }

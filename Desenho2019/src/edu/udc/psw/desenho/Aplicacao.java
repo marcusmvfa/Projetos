@@ -8,25 +8,13 @@ import edu.udc.psw.desenho.gui.FrameDesenho;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
 
+
+//Classe que implementa o padrão Singleton
 public class Aplicacao {
 
 	private static Aplicacao aplicacao;
 	
-	private LinkedList<FormaGeometrica> lista;
-	
-	public void limparLista() {
-		//removerTudo();
-	}
-	
-	public void inserir(FormaGeometrica p) {
-		lista.addLast(p);
-	}
-	public Iterator<FormaGeometrica> getIterator() {
-		return lista.getFirst();
-	}
-	public int getListSize() {
-		return lista.getSize();
-	}
+	private Documento doc;
 	
 	public static Aplicacao getAplicacao() {
 		if(aplicacao == null) {
@@ -35,10 +23,14 @@ public class Aplicacao {
 		return aplicacao;
 	}
 	
+	public Documento getDocumentAtivo() {
+		return doc;
+	}
+	
 	private Aplicacao() {
-		lista = new LinkedList<>();
+		doc = new Documento();
 		
-		FrameDesenho frame = new FrameDesenho();
+		FrameDesenho frame = new FrameDesenho(doc);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 600);
 		frame.setVisible(true);

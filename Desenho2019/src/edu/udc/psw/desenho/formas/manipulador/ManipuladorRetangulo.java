@@ -13,77 +13,77 @@ public class ManipuladorRetangulo implements ManipuladorFormaGeometrica {
 		System.out.println("Retangulo Instanciado!");
 	}
 	
-	@Override
+	
 	public void click(int x, int y) {
 	}
 
-	@Override
+	
 	public void press(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			retangulo.setA(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		p = new Ponto(x, y);
 		try {
 			retangulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
+	
 	public void release(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			retangulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
+	
 	public void drag(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			retangulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
+	
 	public void paint(Graphics g) {
 		int xa = 0;
 		try {
 			xa = (int) retangulo.getA().getX();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int xb = 0;
 		try {
 			xb = (int) retangulo.getB().getX();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int ya = 0;
 		try {
 			ya = (int) retangulo.getA().getY();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int yb = 0;
 		try {
 			yb = (int) retangulo.getB().getY();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

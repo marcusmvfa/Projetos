@@ -13,16 +13,16 @@ public class ManipuladorCirculo implements ManipuladorFormaGeometrica {
 		System.out.println("Circulo Instanciado!");
 	}
 	
-	@Override
+	
 	public void click(int x, int y) {
 	}
 
-	@Override
+	
 	public void press(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			circulo.setA(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -30,29 +30,29 @@ public class ManipuladorCirculo implements ManipuladorFormaGeometrica {
 		p = new Ponto(x, y);
 		try {
 			circulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
+	
 	public void release(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			circulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
+	
 	public void drag(int x, int y) {
 		Ponto p = new Ponto(x, y);
 		try {
 			circulo.setB(p);
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -64,28 +64,28 @@ public class ManipuladorCirculo implements ManipuladorFormaGeometrica {
 		int xa = 0;
 		try {
 			xa = (int) circulo.getA().getX();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int xb = 0;
 		try {
 			xb = (int) circulo.getB().getX();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int ya = 0;
 		try {
 			ya = (int) circulo.getA().getY();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int yb = 0;
 		try {
 			yb = (int) circulo.getB().getY();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -24,6 +24,7 @@ public class FrameDesenho extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private PainelTexto textArea;
+	//private PainelOuvinteFormas textArea;
 	private PainelDesenho painel;
 	private JLabel status;
 	
@@ -74,7 +75,8 @@ public class FrameDesenho extends JFrame {
 		setLayout(new BorderLayout(5, 5)); // configura o layout de frame
 		
 		textArea = new PainelTexto(doc);
-		textArea.setText("Texto");
+		textArea.Atualizar();
+		//		textArea.setText("Texto");
 		add(textArea, BorderLayout.WEST);
 	
 		status = new JLabel("linha de mensagem");

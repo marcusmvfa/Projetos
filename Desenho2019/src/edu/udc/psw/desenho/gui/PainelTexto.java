@@ -9,7 +9,7 @@ import edu.udc.psw.desenho.Documento;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.util.Iterator;
 
-public class PainelTexto extends JTextArea {
+public class PainelTexto extends JTextArea implements PainelOuvinteFormas{
 
 private Documento doc;
 private static final long serialVersionUID = 1L;
@@ -29,5 +29,15 @@ private static final long serialVersionUID = 1L;
 			buf.append("\n");
 		}
 		setText(buf.toString());
+	}
+	
+	public void novaFormaGeometrica(FormaGeometrica forma){
+		doc.inserir(forma);
+	}
+
+	@Override
+	public void formasAlteradas() {
+		// TODO Auto-generated method stub
+		
 	}
 }

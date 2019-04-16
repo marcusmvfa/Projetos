@@ -43,9 +43,8 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 						if(novaForma == null)
 							return;
 						if(novaForma.getClass().equals(Ponto.class))
-							doc.inserir(new Ponto(event.getPoint().x, 
-											event.getPoint().y) ); // localiza o ponto
-							//repaint(); // repinta JFrame
+							doc.inserir(new Ponto(event.getPoint().x, event.getPoint().y) ); // localiza o ponto
+							formasAlteradas(); // repinta JFrame
 					}
 				});
 	}
@@ -127,4 +126,10 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
        status.setText( String.format( "Moved at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
     }
+
+	@Override
+	public void novaFormaGeometrica(FormaGeometrica forma) {
+		doc.inserir(forma);
+		
+	}
 }

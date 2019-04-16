@@ -22,7 +22,7 @@ public class Documento {
 		listaOuvintes = new LinkedList<>();
 	}
 	
-	
+	//public void adcionarOuvinte(PainelTexto textArea) {
 	public void adcionarOuvinte(PainelOuvinteFormas painel) {
 		listaOuvintes.addFirst(painel);
 	}
@@ -74,7 +74,7 @@ public class Documento {
 	public void lerFormas(File file) {
 		arq = new ArquivoTexto(file);
 		//Pela extensão do arquivo o método de ler aquivos deve saber diferenciar o tipo de arquivo a ser lido
-		lista.removerTudo();
+		lista.limparLista();
 	//	String name = file.getName();
 //		String ext = name.substring(name.lastIndexOf('.') + 1);
 		

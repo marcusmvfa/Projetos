@@ -12,8 +12,12 @@ import javax.swing.JPanel;
 
 import edu.udc.psw.desenho.Aplicacao;
 import edu.udc.psw.desenho.Documento;
+import edu.udc.psw.desenho.formas.Circulo;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
+import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
+import edu.udc.psw.desenho.formas.Retangulo;
+import edu.udc.psw.desenho.formas.Triangulo;
 import edu.udc.psw.util.Iterator;
 
 public class PainelDesenho extends JPanel implements MouseListener, MouseMotionListener, PainelOuvinteFormas   {
@@ -34,19 +38,19 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 	    addMouseMotionListener( this );
 	    
 		// trata evento de movimento de mouse do frame
-		addMouseMotionListener(
-
-				new MouseMotionAdapter()// classe interna anônima
-				{
-					// armazena coordenadas de arrastar e repinta
-					public void mouseDragged(MouseEvent event) {
-						if(novaForma == null)
-							return;
-						if(novaForma.getClass().equals(Ponto.class))
-							doc.inserir(new Ponto(event.getPoint().x, event.getPoint().y) ); // localiza o ponto
-							formasAlteradas(); // repinta JFrame
-					}
-				});
+//		addMouseMotionListener(
+//
+//				new MouseMotionAdapter()// classe interna anônima
+//				{
+//					// armazena coordenadas de arrastar e repinta
+//					public void mouseDragged(MouseEvent event) {
+//						if(novaForma == null)
+//							return;
+//						if(novaForma.getClass().equals(Ponto.class))
+//							doc.inserir(new Ponto(event.getPoint().x, event.getPoint().y) ); // localiza o ponto
+//							formasAlteradas(); // repinta JFrame
+//					}
+//				});
 	}
 	
 	public void formasAlteradas() {
@@ -64,6 +68,9 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 			formas.desenhar(g);
 			//g.fillOval(formas.x, formas.y, 4, 4);
 		}
+		if(novaForma != null){
+			novaForma.desenhar(g);
+		}
 		formasAlteradas();
 		
 //		for(Ponto p : lista)
@@ -78,6 +85,34 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando o mouse é liberado logo depois de pressionado
     public void mouseClicked( MouseEvent event )
     {
+    	if(novaForma != null){
+    		if(novaForma.getClass().equals(Ponto.class)){
+    			Ponto p = (Ponto) novaForma;
+    			p.setX(event.getPoint().x);
+    			p.setY(event.getPoint().y);
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
+    		}
+    		else if(novaForma.getClass().equals(Linha.class)){
+    			Linha l = (Linha) novaForma;
+    			l.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			l.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
+    		}
+    		else if(novaForma.getClass().equals(Retangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Triangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Circulo.class)){
+    			
+    		}
+    		
+    	}
        status.setText( String.format( "Clicked at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
     }
@@ -85,6 +120,30 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando mouse é pressionado
     public void mousePressed( MouseEvent event )
     {
+    	if(novaForma != null){
+    		if(novaForma.getClass().equals(Ponto.class)){
+    			Ponto p = (Ponto) novaForma;
+    			p.setX(event.getPoint().x);
+    			p.setY(event.getPoint().y);
+    			formasAlteradas();
+    		}
+    		else if(novaForma.getClass().equals(Linha.class)){
+    			Linha l = (Linha) novaForma;
+    			l.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			l.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
+    		}
+    		else if(novaForma.getClass().equals(Retangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Triangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Circulo.class)){
+    			
+    		}
+    		
+    	}
        status.setText( String.format( "Pressed at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
     }
@@ -92,6 +151,33 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando mouse é liberado depois da operação de arrastar
     public void mouseReleased( MouseEvent event )
     {
+    	if(novaForma != null){
+    		if(novaForma.getClass().equals(Ponto.class)){
+    			Ponto p = (Ponto) novaForma;
+    			p.setX(event.getPoint().x);
+    			p.setY(event.getPoint().y);
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
+    		}
+    		else if(novaForma.getClass().equals(Linha.class)){
+    			Linha l = (Linha) novaForma;
+    			l.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
+    		}
+    		else if(novaForma.getClass().equals(Retangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Triangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Circulo.class)){
+    			
+    		}
+    		
+    	}
        status.setText( String.format( "Released at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
     }
@@ -116,6 +202,29 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando usuário arrasta o mouse com o botão pressionado
     public void mouseDragged( MouseEvent event )
     {
+    	if(novaForma != null){
+    		if(novaForma.getClass().equals(Ponto.class)){
+    			Ponto p = (Ponto) novaForma;
+    			p.setX(event.getPoint().x);
+    			p.setY(event.getPoint().y);
+    			formasAlteradas();
+    		}
+    		else if(novaForma.getClass().equals(Linha.class)){
+    			Linha l = (Linha) novaForma;
+    			l.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
+    		}
+    		else if(novaForma.getClass().equals(Retangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Triangulo.class)){
+    			
+    		}
+    		else if(novaForma.getClass().equals(Circulo.class)){
+    			
+    		}
+    		
+    	}
        status.setText( String.format( "Dragged at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
     } 

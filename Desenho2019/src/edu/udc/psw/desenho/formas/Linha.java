@@ -4,12 +4,14 @@ import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
 import edu.udc.psw.desenho.formas.manipulador.ManipuladorLinha;
 
 import java.awt.Graphics;
+import java.nio.ByteBuffer;
 
 import edu.udc.psw.desenho.formas.Ponto;
 
 public class Linha implements FormaGeometrica {
 	private Ponto a = null;
 	private Ponto b = null;
+	long serialVersionUID = 0;
 	
 	public Linha(){
 		a = new Ponto();
@@ -24,6 +26,30 @@ public class Linha implements FormaGeometrica {
 	public Linha(int ax, int ay, int bx, int by){
 		a = new Ponto(ax, ay);
 		b = new Ponto(bx, by);
+	}
+	
+	public Linha(byte bytes[]){
+		if(ByteBuffer.wrap(bytes, 0, 8).getLong() != serialVersionUID){
+			a.x = 0;
+			a.y = 0;
+			b.x = 0;
+			b.y = 0;
+			return;
+		}
+		a.x = ByteBuffer.wrap(bytes, 8, 12).getInt();
+		a.y = ByteBuffer.wrap(bytes, 12, 16).getInt();
+		
+	}
+	public byte[] toArray() {
+		byte[] bytes = new byte[16];
+		
+		ByteBuffer.wrap(bytes, 0, 8).putLong(serialVersionUID);
+		ByteBuffer.wrap(bytes, 12, 16).putInt(a.x);
+		ByteBuffer.wrap(bytes, 12, 16).putInt(a.y);
+		ByteBuffer.wrap(bytes, 12, 16).putInt(b.x);
+		ByteBuffer.wrap(bytes, 12, 16).putInt(b.y);
+		
+		return bytes;
 	}
 	
 	

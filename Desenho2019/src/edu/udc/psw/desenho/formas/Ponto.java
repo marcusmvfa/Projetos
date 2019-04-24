@@ -20,10 +20,6 @@ public class Ponto implements FormaGeometrica{
 		this.y = y;
 	}
 	public Ponto(byte bytes[]){
-//		if(bytes.length != 16){
-//			x = 0;
-//			y = 0;
-//		}
 		if(ByteBuffer.wrap(bytes, 0, 8).getLong() != serialVersionUID){
 			x = 0;
 			y = 0;
@@ -46,11 +42,15 @@ public class Ponto implements FormaGeometrica{
 		this.y = y;
 	}
 	public static Ponto fabricarPonto(String ponto) {
-		int i = ponto.indexOf(' ');
-		int x = Integer.parseInt(ponto.substring(0, i));
-		int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
-		Ponto p = new Ponto(x, y);
-		return p;
+
+		if(ponto.startsWith(Ponto.class.getSimpleName())){
+			int i = ponto.indexOf(' ');
+			int x = Integer.parseInt(ponto.substring(0, i));
+			int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
+			Ponto p = new Ponto(x, y);	
+			return p;
+		}
+		return null;
 	}
 	public double distancia(Ponto p){
 		return Math.sqrt( (x - p.x)*(x - p.x) + (y - p.y)*(y - p.y));
@@ -62,11 +62,11 @@ public class Ponto implements FormaGeometrica{
 	
 	@Override
 	public void desenhar(Graphics g) {
-		// TODO Auto-generated method stub
+		g.drawOval(x, y, 2, 2);
 		
 	}
 	@Override
-	public FormaGeometrica fabricar(String ponto) {
+	public Ponto fabricar(String ponto) {
 		int i = ponto.indexOf(' ');
 		int x = Integer.parseInt(ponto.substring(0, i));
 		int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));

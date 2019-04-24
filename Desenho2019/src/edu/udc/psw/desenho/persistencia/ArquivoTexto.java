@@ -30,7 +30,7 @@ private File file;
 			input = new Scanner( file );
 			while (input.hasNextLine()) {
 				String str = input.nextLine();
-				Ponto forma = Ponto.fabricarPonto(str);
+				Ponto forma = Ponto.fabricar(str);
 				
 				
 				doc.inserir(forma);

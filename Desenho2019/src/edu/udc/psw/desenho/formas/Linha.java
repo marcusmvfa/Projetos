@@ -98,4 +98,10 @@ public class Linha implements FormaGeometrica {
 		
 	}
 
+	@Override
+	public FormaGeometrica fabricar(String forma) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

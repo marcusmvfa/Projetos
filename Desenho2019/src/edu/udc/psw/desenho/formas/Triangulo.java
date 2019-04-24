@@ -96,5 +96,10 @@ public class Triangulo implements FormaGeometrica{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public FormaGeometrica fabricar(String forma) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

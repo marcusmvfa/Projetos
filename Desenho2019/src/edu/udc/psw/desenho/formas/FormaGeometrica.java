@@ -9,4 +9,5 @@ public interface FormaGeometrica {
 	public String toString();
 	public void desenhar(Graphics g);
 
+	public FormaGeometrica fabricar(String forma);
 }

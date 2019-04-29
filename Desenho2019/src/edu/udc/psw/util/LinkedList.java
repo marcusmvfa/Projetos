@@ -159,6 +159,10 @@ public class LinkedList<TIPO> implements Iterable<TIPO> {
 //	        no.prev.next= null;
 		return dado;
 	}
+	public void removeAll() {
+		while(first != null)
+			removeFirst();
+	}
 	
 	public void limparLista() {
 		while(first != null && last != null) {

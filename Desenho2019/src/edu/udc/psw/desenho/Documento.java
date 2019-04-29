@@ -40,10 +40,7 @@ public class Documento {
 	}
 	
 	public void limparLista() {
-//		while(first != null && last != null) {
-//			first = null;
-//			last = null;
-//		}		
+		lista.removeAll();
 	
 		atualizarPaineis();
 	}
@@ -75,11 +72,13 @@ public class Documento {
 		arq = new ArquivoTexto(file);
 		//Pela extensão do arquivo o método de ler aquivos deve saber diferenciar o tipo de arquivo a ser lido
 		lista.limparLista();
+		lista.removeAll();
 	//	String name = file.getName();
 //		String ext = name.substring(name.lastIndexOf('.') + 1);
 		
 		//listaFormas = arq.lerFormas();
-		arq.lerFormas(Aplicacao.getAplicacao().getDocumentAtivo());
+//		arq.lerFormas(Aplicacao.getAplicacao().getDocumentAtivo());
+		arq.lerFormas(this);
 
 //		atualizaViews();
 	}

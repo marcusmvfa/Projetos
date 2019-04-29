@@ -38,16 +38,18 @@ public class Linha implements FormaGeometrica {
 		}
 		a.x = ByteBuffer.wrap(bytes, 8, 12).getInt();
 		a.y = ByteBuffer.wrap(bytes, 12, 16).getInt();
+		b.x = ByteBuffer.wrap(bytes, 16, 20).getInt();
+		b.y = ByteBuffer.wrap(bytes, 20, 24).getInt();
 		
 	}
 	public byte[] toArray() {
 		byte[] bytes = new byte[16];
 		
 		ByteBuffer.wrap(bytes, 0, 8).putLong(serialVersionUID);
-		ByteBuffer.wrap(bytes, 12, 16).putInt(a.x);
+		ByteBuffer.wrap(bytes, 8, 12).putInt(a.x);
 		ByteBuffer.wrap(bytes, 12, 16).putInt(a.y);
-		ByteBuffer.wrap(bytes, 12, 16).putInt(b.x);
-		ByteBuffer.wrap(bytes, 12, 16).putInt(b.y);
+		ByteBuffer.wrap(bytes, 16, 20).putInt(b.x);
+		ByteBuffer.wrap(bytes, 20, 24).putInt(b.y);
 		
 		return bytes;
 	}
@@ -97,7 +99,8 @@ public class Linha implements FormaGeometrica {
 
 	@Override
 	public String toString(){
-		return a.toString() + b.toString();
+//		return a.toString() + b.toString();
+		return String.format("%s %s", a, b);
 	}
 
 	@Override
@@ -107,24 +110,26 @@ public class Linha implements FormaGeometrica {
 	}
 	
 	public static Linha fabricarLinha(String linha) {
-		int i = linha.indexOf(' ');
-		int x = Integer.parseInt(linha.substring(0, i));
-		linha = linha.substring(i + 1);
-		i = linha.indexOf(' ');
-		int y = Integer.parseInt(linha.substring(0, i));
-		
-		Ponto a = new Ponto(x, y);
-		linha = linha.substring(i+1);
-		i = linha.indexOf(' ');
-		x = Integer.parseInt(linha.substring(0, i));
-		y = Integer.parseInt(linha.substring(0, i));
-		Ponto b = new Ponto(x,y);
-		
-		return new Linha(a, b);
+		if(linha.startsWith(Linha.class.getSimpleName())) {
+			int i = linha.indexOf(' ');
+			int x = Integer.parseInt(linha.substring(0, i));
+			linha = linha.substring(i + 1);
+			i = linha.indexOf(' ');
+			int y = Integer.parseInt(linha.substring(0, i));
+			
+			Ponto a = new Ponto(x, y);
+			linha = linha.substring(i+1);
+			i = linha.indexOf(' ');
+			x = Integer.parseInt(linha.substring(0, i));
+			y = Integer.parseInt(linha.substring(0, i));
+			Ponto b = new Ponto(x,y);
+			
+			return new Linha(a, b);
+		}
+		return null;
 		
 	}
 
-	@Override
 	public FormaGeometrica fabricar(String forma) {
 		// TODO Auto-generated method stub
 		return null;

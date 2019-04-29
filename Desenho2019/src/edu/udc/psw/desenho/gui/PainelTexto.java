@@ -37,7 +37,14 @@ private static final long serialVersionUID = 1L;
 
 	@Override
 	public void formasAlteradas() {
-		// TODO Auto-generated method stub
+		StringBuffer buf = new StringBuffer();
+		Iterator<FormaGeometrica> i = doc.getIterator();
+		FormaGeometrica forma;
+		while((forma = i.next()) != null) {
+			buf.append(forma);
+			buf.append("\n");
+		}
+		setText(buf.toString());
 		
 	}
 }

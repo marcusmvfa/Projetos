@@ -9,7 +9,7 @@ import edu.udc.psw.desenho.formas.FormaGeometrica;
 public class Ponto implements FormaGeometrica{
 	public int x;
 	public int y;
-	public static long serialVersionUID;
+	public static final long serialVersionUID = 1L;
 	
 	public Ponto() {
 		this.x = 0;
@@ -65,13 +65,28 @@ public class Ponto implements FormaGeometrica{
 		g.drawOval(x, y, 2, 2);
 		
 	}
+	public static Ponto fabricar(String ponto) {
+		if(ponto.startsWith(Ponto.class.getSimpleName())) {
+			int i = ponto.indexOf(' ');
+			int x = Integer.parseInt(ponto.substring(5, i));
+//			int x = Integer.parseInt(ponto.substring(0, i));
+			int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
+			Ponto p = new Ponto(x, y);
+			return p;			
+		}
+		return null;
+	}
 	@Override
-	public Ponto fabricar(String ponto) {
-		int i = ponto.indexOf(' ');
-		int x = Integer.parseInt(ponto.substring(0, i));
-		int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
-		Ponto p = new Ponto(x, y);
-		return p;
+	public FormaGeometrica clone() {
+		return new Ponto(x, y);
+	}
+	@Override
+	public byte[] toArray() {
+		byte[] bytes = new byte[16];
+		ByteBuffer.wrap(bytes, 0, 8).putLong(serialVersionUID);
+		ByteBuffer.wrap(bytes, 8, 12).putInt(x);
+		ByteBuffer.wrap(bytes, 12, 16).putInt(y);
+		return bytes;
 	}
 	
 }

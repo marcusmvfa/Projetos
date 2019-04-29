@@ -81,8 +81,13 @@ public class Circulo implements FormaGeometrica{
 		
 	}
 
-	@Override
 	public FormaGeometrica fabricar(String forma) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public byte[] toArray() {
 		// TODO Auto-generated method stub
 		return null;
 	}

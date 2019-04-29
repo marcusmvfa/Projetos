@@ -51,6 +51,18 @@ public class FrameDesenho extends JFrame {
 		
 		mnArquivo.add(mntmSalvar);
 		
+		JMenuItem mntmLer = new JMenuItem("Ler");
+		mntmLer.setMnemonic('L');
+		mntmLer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = escolherArquivo(false);
+				if(f == null)
+					return;
+				Aplicacao.getAplicacao().getDocumentAtivo().lerFormas(f);
+			}
+		});
+		mnArquivo.add(mntmLer);
+		
 		JMenu mnForma = new JMenu("Formas");
 		mnForma.setMnemonic('F');
 		menuBar.add(mnForma);
@@ -75,7 +87,7 @@ public class FrameDesenho extends JFrame {
 		setLayout(new BorderLayout(5, 5)); // configura o layout de frame
 		
 		textArea = new PainelTexto(doc);
-		textArea.Atualizar();
+//		textArea.Atualizar();
 		//		textArea.setText("Texto");
 		add(textArea, BorderLayout.WEST);
 	
@@ -86,7 +98,7 @@ public class FrameDesenho extends JFrame {
 		add(painel, BorderLayout.CENTER);
 		
 		doc.adcionarOuvinte(textArea);
-		
+		doc.adcionarOuvinte(painel);
 	}
 	
 	private File escolherArquivo(boolean gravar) {

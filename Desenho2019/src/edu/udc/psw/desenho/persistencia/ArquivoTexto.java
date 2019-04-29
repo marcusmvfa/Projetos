@@ -9,6 +9,7 @@ import java.util.Scanner;
 import edu.udc.psw.desenho.Aplicacao;
 import edu.udc.psw.desenho.Documento;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
+import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
@@ -24,16 +25,18 @@ private File file;
 
 	public void lerFormas(Documento doc) {		
 		Scanner input = null;
-		doc.limparLista();
+		//doc.limparLista();
 
 		try {
 			input = new Scanner( file );
 			while (input.hasNextLine()) {
 				String str = input.nextLine();
 				Ponto forma = Ponto.fabricar(str);
+				Linha linha = Linha.fabricarLinha(str);
 				
 				
 				doc.inserir(forma);
+				doc.inserir(linha);
 			}
 			
 		}  catch (FileNotFoundException e) {

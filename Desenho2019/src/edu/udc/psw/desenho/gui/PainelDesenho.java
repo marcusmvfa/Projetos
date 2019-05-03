@@ -18,6 +18,7 @@ import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
 import edu.udc.psw.desenho.formas.Retangulo;
 import edu.udc.psw.desenho.formas.Triangulo;
+import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
 import edu.udc.psw.util.Iterator;
 
 public class PainelDesenho extends JPanel implements MouseListener, MouseMotionListener, PainelOuvinteFormas   {
@@ -27,6 +28,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 	private Documento doc;
 	
 	private FormaGeometrica novaForma;
+	private ManipuladorFormaGeometrica manipulador;
 	
 	public PainelDesenho(JLabel status, Documento doc) {
 		this.status = status;
@@ -79,6 +81,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 	
 	public void novaForma(FormaGeometrica forma) {
 		this.novaForma = forma;
+		this.manipulador = forma.getManipulador();
 	}
 	
 	// Handlers de evento de MouseListener

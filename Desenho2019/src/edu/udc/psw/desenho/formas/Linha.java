@@ -9,8 +9,8 @@ import java.nio.ByteBuffer;
 import edu.udc.psw.desenho.formas.Ponto;
 
 public class Linha implements FormaGeometrica {
-	private Ponto a = null;
-	private Ponto b = null;
+	private Ponto a;
+	private Ponto b;
 	long serialVersionUID = 0;
 	
 	public Linha(){
@@ -19,14 +19,15 @@ public class Linha implements FormaGeometrica {
 	}
 
 	public Linha(Ponto a, Ponto b) {
-		this.a = a;
-		this.b = b;
+		this.a = a.clone();
+		this.b = b.clone();
 	}
 	
 	public Linha(int ax, int ay, int bx, int by){
 		a = new Ponto(ax, ay);
 		b = new Ponto(bx, by);
 	}
+	
 	
 	public Linha(byte bytes[]){
 		if(ByteBuffer.wrap(bytes, 0, 8).getLong() != serialVersionUID){
@@ -57,7 +58,7 @@ public class Linha implements FormaGeometrica {
 	
 	@Override
 	public Linha clone() {
-		return new Linha();
+		return new Linha(a.clone(), b.clone());
 	}
 
 	public double comprimento(){
@@ -82,19 +83,19 @@ public class Linha implements FormaGeometrica {
 	}
 	
 	public Ponto getA() {
-		return a;
+		return a.clone();
 	}
 
 	public Ponto getB() {
-		return b;
+		return b.clone();
 	}
 
 	public void setA(Ponto a) {
-		this.a = a;
+		this.a = a.clone();
 	}
 
 	public void setB(Ponto b)  {
-		this.b = b;
+		this.b = b.clone();
 	}
 
 	@Override
@@ -116,12 +117,12 @@ public class Linha implements FormaGeometrica {
 			linha = linha.substring(i + 1);
 			i = linha.indexOf(' ');
 			int y = Integer.parseInt(linha.substring(0, i));
-			
 			Ponto a = new Ponto(x, y);
+			
 			linha = linha.substring(i+1);
 			i = linha.indexOf(' ');
 			x = Integer.parseInt(linha.substring(0, i));
-			y = Integer.parseInt(linha.substring(0, i));
+			y = Integer.parseInt(linha.substring(i +1, linha.length() - 1));
 			Ponto b = new Ponto(x,y);
 			
 			return new Linha(a, b);
@@ -130,7 +131,28 @@ public class Linha implements FormaGeometrica {
 		
 	}
 
-	public FormaGeometrica fabricar(String forma) {
+	public FormaGeometrica fabricar(String linha) {
+		if(linha.startsWith(Linha.class.getSimpleName())) {
+			int i = linha.indexOf(' ');
+			int x = Integer.parseInt(linha.substring(0, i));
+			linha = linha.substring(i + 1);
+			i = linha.indexOf(' ');
+			int y = Integer.parseInt(linha.substring(0, i));
+			Ponto a = new Ponto(x, y);
+			
+			linha = linha.substring(i+1);
+			i = linha.indexOf(' ');
+			x = Integer.parseInt(linha.substring(0, i));
+			y = Integer.parseInt(linha.substring(i +1, linha.length() - 1));
+			Ponto b = new Ponto(x,y);
+			
+			return new Linha(a, b);
+		}
+		return null;
+	}
+
+	@Override
+	public ManipuladorFormaGeometrica getManipulador() {
 		// TODO Auto-generated method stub
 		return null;
 	}

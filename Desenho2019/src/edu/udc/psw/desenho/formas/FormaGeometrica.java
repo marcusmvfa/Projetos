@@ -13,4 +13,6 @@ public interface FormaGeometrica {
 	
 	FormaGeometrica clone();
 	byte[] toArray();
+	
+	ManipuladorFormaGeometrica getManipulador();
 }

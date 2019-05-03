@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.nio.ByteBuffer;
 
 import edu.udc.psw.desenho.formas.FormaGeometrica;
+import edu.udc.psw.desenho.formas.manipulador.ManipuladorFormaGeometrica;
+import edu.udc.psw.desenho.formas.manipulador.ManipuladorPonto;
 
 public class Ponto implements FormaGeometrica{
 	public int x;
@@ -29,6 +31,11 @@ public class Ponto implements FormaGeometrica{
 		y = ByteBuffer.wrap(bytes, 12, 16).getInt();
 		
 	}
+	
+	public Ponto clone(){
+		return new Ponto(x,y);
+	}
+	
 	public int getX() {
 		return x;
 	}
@@ -46,7 +53,7 @@ public class Ponto implements FormaGeometrica{
 		if(ponto.startsWith(Ponto.class.getSimpleName())){
 			int i = ponto.indexOf(' ');
 			int x = Integer.parseInt(ponto.substring(0, i));
-			int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
+			int y = Integer.parseInt(ponto.substring(i + 1, ponto.length() - 1));
 			Ponto p = new Ponto(x, y);	
 			return p;
 		}
@@ -62,7 +69,7 @@ public class Ponto implements FormaGeometrica{
 	
 	@Override
 	public void desenhar(Graphics g) {
-		g.drawOval(x, y, 2, 2);
+		g.fillOval(x, y, 4, 4);
 		
 	}
 	public static Ponto fabricar(String ponto) {
@@ -76,10 +83,10 @@ public class Ponto implements FormaGeometrica{
 		}
 		return null;
 	}
-	@Override
-	public FormaGeometrica clone() {
-		return new Ponto(x, y);
-	}
+//	@Override
+//	public FormaGeometrica clone() {
+//		return new Ponto(x, y);
+//	}
 	@Override
 	public byte[] toArray() {
 		byte[] bytes = new byte[16];
@@ -87,6 +94,10 @@ public class Ponto implements FormaGeometrica{
 		ByteBuffer.wrap(bytes, 8, 12).putInt(x);
 		ByteBuffer.wrap(bytes, 12, 16).putInt(y);
 		return bytes;
+	}
+	@Override
+	public ManipuladorFormaGeometrica getManipulador() {
+		return new ManipuladorPonto(this);
 	}
 	
 }

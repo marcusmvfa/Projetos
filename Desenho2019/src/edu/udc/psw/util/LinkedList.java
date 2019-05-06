@@ -135,10 +135,10 @@ public class LinkedList<TIPO> implements Iterable<TIPO> {
 	}
 	
 	public TIPO removeLast() {
-		if(first == null)
+		if(last == null)
 	        return null;
 
-	    TIPO dado = first.data;
+	    TIPO dado = last.data;
 	    
 	    if(first == last) {
 	    	first = null;

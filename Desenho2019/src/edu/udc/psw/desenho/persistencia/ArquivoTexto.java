@@ -31,7 +31,7 @@ private File file;
 			input = new Scanner( file );
 			while (input.hasNextLine()) {
 				String str = input.nextLine();
-				Ponto forma = Ponto.fabricar(str);
+				Ponto forma = Ponto.fabricar(str);//FAzer verificação de cada forma// Fazer uns if's para cada forma para então chamar o fabricar da forma especifica 	
 				Linha linha = Linha.fabricarLinha(str);
 				
 				

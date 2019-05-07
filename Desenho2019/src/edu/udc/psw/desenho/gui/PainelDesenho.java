@@ -106,13 +106,28 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-    			
+//    			Retangulo r = (Retangulo) novaForma;
+//    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			doc.inserir(novaForma);
+//    			
+//    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			
+//    			Triangulo t = (Triangulo) novaForma;
+//    			t.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			doc.inserir(novaForma);
+//    			
+//    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
+    			Circulo c = (Circulo) novaForma;
+    			c.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
     			
+    			novaForma = null;
     		}
     		
     	}
@@ -137,13 +152,23 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-    			
+//    			Retangulo r = (Retangulo) novaForma;
+//    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			
+//    			Triangulo t = (Triangulo) novaForma;
+//    			t.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+////    			t.setC(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
-    			
+    			Circulo c = (Circulo) novaForma;
+    			c.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
     		}
     		
     	}
@@ -171,13 +196,25 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-    			
+//    			Retangulo r = (Retangulo) novaForma;
+//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			doc.inserir(novaForma);
+//    			
+//    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			
+//    			Triangulo t = (Triangulo) novaForma;
+//    			t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+//    			doc.inserir(novaForma);
+//    			
+//    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
+    			Circulo c = (Circulo) novaForma;
+    			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
     			
+    			novaForma = null;
     		}
     		
     	}
@@ -224,7 +261,9 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
-    			
+    			Circulo c = (Circulo) novaForma;
+    			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
     		}
     		
     	}

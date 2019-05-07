@@ -77,7 +77,7 @@ public class Circulo implements FormaGeometrica{
 
 	@Override
 	public void desenhar(Graphics g) {
-		// TODO Auto-generated method stub
+		g.drawOval(a.x, a.y, b.x, b.y);
 		
 	}
 
@@ -90,6 +90,10 @@ public class Circulo implements FormaGeometrica{
 	public byte[] toArray() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public String toString(){
+		return String.format("%s %s",a, String.valueOf(Raio()));
 	}
 
 }

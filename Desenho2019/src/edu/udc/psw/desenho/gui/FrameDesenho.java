@@ -16,8 +16,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import edu.udc.psw.desenho.Aplicacao;
 import edu.udc.psw.desenho.Documento;
+import edu.udc.psw.desenho.formas.Circulo;
 import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
+import edu.udc.psw.desenho.formas.Retangulo;
+import edu.udc.psw.desenho.formas.Triangulo;
 import edu.udc.psw.desenho.persistencia.ArquivoTexto;
 
 public class FrameDesenho extends JFrame {
@@ -84,6 +87,35 @@ public class FrameDesenho extends JFrame {
 			}
 		});
 		mnForma.add(mntmLinha);
+		
+		JMenuItem mntmCirculo = new JMenuItem("Circulo");
+		mntmLinha.setMnemonic('C');
+		mntmLinha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painel.novaForma(new Circulo());
+			}
+		});
+		mnForma.add(mntmCirculo);
+		
+		JMenuItem mntmRetangulo = new JMenuItem("Retangulo");
+		mntmLinha.setMnemonic('R');
+		mntmLinha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painel.novaForma(new Retangulo());
+			}
+		});
+		mnForma.add(mntmRetangulo);
+		
+		JMenuItem mntmTriangulo = new JMenuItem("Triângulo");
+		mntmLinha.setMnemonic('T');
+		mntmLinha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				painel.novaForma(new Triangulo());
+			}
+		});
+		mnForma.add(mntmTriangulo);
+		
+		
 		setLayout(new BorderLayout(5, 5)); // configura o layout de frame
 		
 		textArea = new PainelTexto(doc);

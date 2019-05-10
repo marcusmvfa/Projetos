@@ -73,15 +73,26 @@ public class Ponto implements FormaGeometrica{
 		
 	}
 	public static Ponto fabricar(String ponto) {
-		if(ponto.startsWith(Ponto.class.getSimpleName())) {
-			int i = ponto.indexOf(' ');
+		if(ponto != null){										//Fazer uma verificação mais decente
 			String[] espacos = ponto.split(" ");
-			int x = Integer.parseInt(espacos[1]);
-//			int x = Integer.parseInt(ponto.substring(0, i));
-//			int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
-			int y = Integer.parseInt(espacos[2]);
+			int x = Integer.parseInt(espacos[0]);
+//		int x = Integer.parseInt(ponto.substring(0, i));
+//		int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
+			int y = Integer.parseInt(espacos[1]);
 			Ponto p = new Ponto(x, y);
 			return p;			
+			
+		}
+		
+		if(ponto.startsWith(Ponto.class.getSimpleName())) {
+			int i = ponto.indexOf(' ');
+//			String[] espacos = ponto.split(" ");
+//			int x = Integer.parseInt(espacos[1]);
+////			int x = Integer.parseInt(ponto.substring(0, i));
+////			int y = Integer.parseInt(ponto.substring(i+1, ponto.length()-1));
+//			int y = Integer.parseInt(espacos[2]);
+//			Ponto p = new Ponto(x, y);
+//			return p;			
 		}
 		return null;
 	}

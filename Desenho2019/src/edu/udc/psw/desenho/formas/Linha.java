@@ -131,8 +131,8 @@ public class Linha implements FormaGeometrica {
 		
 	}
 
-	public FormaGeometrica fabricar(String linha) {
-		if(linha.startsWith(Linha.class.getSimpleName())) {
+	public static FormaGeometrica fabricar(String linha) {
+		if(!linha.isEmpty()){
 			int i = linha.indexOf(' ');
 			int x = Integer.parseInt(linha.substring(0, i));
 			linha = linha.substring(i + 1);
@@ -143,11 +143,28 @@ public class Linha implements FormaGeometrica {
 			linha = linha.substring(i+1);
 			i = linha.indexOf(' ');
 			x = Integer.parseInt(linha.substring(0, i));
-			y = Integer.parseInt(linha.substring(i +1, linha.length() - 1));
+			y = Integer.parseInt(linha.substring(i +1, linha.length()));
 			Ponto b = new Ponto(x,y);
 			
 			return new Linha(a, b);
 		}
+			
+//		if(linha.startsWith(Linha.class.getSimpleName())) {
+//			int i = linha.indexOf(' ');
+//			int x = Integer.parseInt(linha.substring(0, i));
+//			linha = linha.substring(i + 1);
+//			i = linha.indexOf(' ');
+//			int y = Integer.parseInt(linha.substring(0, i));
+//			Ponto a = new Ponto(x, y);
+//			
+//			linha = linha.substring(i+1);
+//			i = linha.indexOf(' ');
+//			x = Integer.parseInt(linha.substring(0, i));
+//			y = Integer.parseInt(linha.substring(i +1, linha.length() - 1));
+//			Ponto b = new Ponto(x,y);
+//			
+//			return new Linha(a, b);
+//		}
 		return null;
 	}
 

@@ -77,7 +77,37 @@ public class Circulo implements FormaGeometrica{
 
 	@Override
 	public void desenhar(Graphics g) {
-		g.drawOval(a.x, a.y, b.x, b.y);
+		//g.drawOval(a.x, a.y, (int)Math.round(Raio()), (int)Math.round(Raio()));
+		int xa = 0;
+		try {
+			xa = (int) getA().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int xb = 0;
+		try {
+			xb = (int) getB().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ya = 0;
+		try {
+			ya = (int) getA().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int yb = 0;
+		try {
+			yb = (int) getB().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		g.drawOval(xa < xb ? xa : xb, ya < yb ? ya : yb, 
+				(int) altura() , (int) altura());
 		
 	}
 

@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import edu.udc.psw.desenho.Aplicacao;
 import edu.udc.psw.desenho.Documento;
+import edu.udc.psw.desenho.formas.Circulo;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
@@ -45,6 +46,10 @@ private String str;
 					if(corte[0].equals("Linha")){
 						FormaGeometrica linha = Linha.fabricar(corte[1] + " " + corte[2] + " " + corte[3] + " " + corte[4]);
 						doc.inserir(linha);
+					}
+					if(corte[0].equals("Circulo")){
+						FormaGeometrica circulo = Circulo.fabricar(corte[1] + " " + corte[2] + " " + corte[3]);
+						doc.inserir(circulo);
 					}
 				}
 				buffer.close();

@@ -89,8 +89,8 @@ public class FrameDesenho extends JFrame {
 		mnForma.add(mntmLinha);
 		
 		JMenuItem mntmCirculo = new JMenuItem("Circulo");
-		mntmLinha.setMnemonic('C');
-		mntmLinha.addActionListener(new ActionListener() {
+		mntmCirculo.setMnemonic('C');
+		mntmCirculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				painel.novaForma(new Circulo());
 			}

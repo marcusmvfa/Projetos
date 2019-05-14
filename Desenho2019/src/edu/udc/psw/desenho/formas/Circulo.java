@@ -111,8 +111,26 @@ public class Circulo implements FormaGeometrica{
 		
 	}
 
-	public FormaGeometrica fabricar(String forma) {
-		// TODO Auto-generated method stub
+	public static FormaGeometrica fabricar(String circulo) {
+		if(!circulo.isEmpty()){
+			int i = circulo.indexOf(' ');
+			int x = Integer.parseInt(circulo.substring(0, i));
+			circulo = circulo.substring(i + 1);
+			i = circulo.indexOf(' ');
+			int y = Integer.parseInt(circulo.substring(0, i));
+			Ponto a = new Ponto(x, y);
+			
+			circulo = circulo.substring(i+1);
+//			i = circulo.indexOf(' ');
+			//x = Integer.parseInt(circulo.substring(0, i));
+			//y = Integer.parseInt(circulo.substring(i +1, circulo.length()));
+			double z = Double.parseDouble(circulo.substring(0, circulo.length()));
+			y = (int) z;
+			Ponto b = new Ponto(x,y);
+			
+			return new Circulo(a, b);
+		}
+			
 		return null;
 	}
 

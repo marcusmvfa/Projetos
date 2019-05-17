@@ -98,8 +98,8 @@ public class FrameDesenho extends JFrame {
 		mnForma.add(mntmCirculo);
 		
 		JMenuItem mntmRetangulo = new JMenuItem("Retangulo");
-		mntmLinha.setMnemonic('R');
-		mntmLinha.addActionListener(new ActionListener() {
+		mntmRetangulo.setMnemonic('R');
+		mntmRetangulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				painel.novaForma(new Retangulo());
 			}
@@ -107,8 +107,8 @@ public class FrameDesenho extends JFrame {
 		mnForma.add(mntmRetangulo);
 		
 		JMenuItem mntmTriangulo = new JMenuItem("Triângulo");
-		mntmLinha.setMnemonic('T');
-		mntmLinha.addActionListener(new ActionListener() {
+		mntmTriangulo.setMnemonic('T');
+		mntmTriangulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				painel.novaForma(new Triangulo());
 			}

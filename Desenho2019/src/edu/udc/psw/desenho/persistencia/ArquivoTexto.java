@@ -14,6 +14,7 @@ import edu.udc.psw.desenho.formas.Circulo;
 import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.formas.Linha;
 import edu.udc.psw.desenho.formas.Ponto;
+import edu.udc.psw.desenho.formas.Retangulo;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
 
@@ -50,6 +51,10 @@ private String str;
 					if(corte[0].equals("Circulo")){
 						FormaGeometrica circulo = Circulo.fabricar(corte[1] + " " + corte[2] + " " + corte[3]);
 						doc.inserir(circulo);
+					}
+					if(corte[0].equals("Retangulo")){
+						FormaGeometrica retangulo = Retangulo.fabricar(corte[1] + " " + corte[2] + " " + corte[3] + " " + corte[4]);
+						doc.inserir(retangulo);
 					}
 				}
 				buffer.close();

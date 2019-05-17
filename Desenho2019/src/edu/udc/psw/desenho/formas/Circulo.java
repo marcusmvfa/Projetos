@@ -125,6 +125,7 @@ public class Circulo implements FormaGeometrica{
 			//x = Integer.parseInt(circulo.substring(0, i));
 			//y = Integer.parseInt(circulo.substring(i +1, circulo.length()));
 			double z = Double.parseDouble(circulo.substring(0, circulo.length()));
+			
 			y = (int) z;
 			Ponto b = new Ponto(x,y);
 			

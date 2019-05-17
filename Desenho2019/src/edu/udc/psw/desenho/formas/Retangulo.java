@@ -73,14 +73,98 @@ public class Retangulo implements FormaGeometrica {
 
 	@Override
 	public void desenhar(Graphics g) {
-		// TODO Auto-generated method stub
+		int xa = 0;
+		try {
+			xa = (int) this.getA().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int xb = 0;
+		try {
+			xb = (int) this.getB().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ya = 0;
+		try {
+			ya = (int) this.getA().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int yb = 0;
+		try {
+			yb = (int) this.getB().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		g.drawRect(xa < xb ? xa : xb, ya < yb ? ya : yb, 
+				(int) this.base(), (int) this.altura() );
+	
 		
 	}
 
 
-	public FormaGeometrica fabricar(String forma) {
-		// TODO Auto-generated method stub
+	public static FormaGeometrica fabricar(String retangulo) {
+		
+//		if(retangulo.startsWith(Linha.class.getSimpleName())) {
+		if(!retangulo.isEmpty()){
+			int i = retangulo.indexOf(' ');
+			int x = Integer.parseInt(retangulo.substring(0, i));
+			retangulo = retangulo.substring(i + 1);
+			i = retangulo.indexOf(' ');
+			int y = Integer.parseInt(retangulo.substring(0, i));
+			Ponto a = new Ponto(x, y);
+			
+			retangulo = retangulo.substring(i+1);
+			i = retangulo.indexOf(' ');
+			x = Integer.parseInt(retangulo.substring(0, i));
+			y = Integer.parseInt(retangulo.substring(i +1, retangulo.length()));
+			Ponto b = new Ponto(x,y);
+			
+			return new Linha(a, b);
+		}
 		return null;
+//		
+//		int xa = 0;
+//		try {
+//			xa = (int) .getA().getX();
+//			a.x = xa;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		int xb = 0;
+//		try {
+//			xb = (int) this.getB().getX();
+//			b.x = xb;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		int ya = 0;
+//		try {
+//			ya = (int) this.getA().getY();
+//			a.y = ya;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		int yb = 0;
+//		try {
+//			yb = (int) this.getB().getY();
+//			b.y = yb;
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		g.drawRect(xa < xb ? xa : xb, ya < yb ? ya : yb, 
+//				(int) retangulo.base(), (int) retangulo.altura() );
+//		
+//		return new Retangulo(a, b);
 	}
 
 	@Override
@@ -88,4 +172,9 @@ public class Retangulo implements FormaGeometrica {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public String toString(){
+		return String.format("%s %s", a, b);
+	}
 }
+

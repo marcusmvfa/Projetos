@@ -106,12 +106,12 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-//    			Retangulo r = (Retangulo) novaForma;
-//    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			doc.inserir(novaForma);
-//    			
-//    			novaForma = null;
+    			Retangulo r = (Retangulo) novaForma;
+    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
 //    			Triangulo t = (Triangulo) novaForma;
@@ -152,10 +152,10 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-//    			Retangulo r = (Retangulo) novaForma;
-//    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			formasAlteradas();
+    			Retangulo r = (Retangulo) novaForma;
+    			r.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
 //    			Triangulo t = (Triangulo) novaForma;
@@ -196,11 +196,11 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-//    			Retangulo r = (Retangulo) novaForma;
-//    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			doc.inserir(novaForma);
-//    			
-//    			novaForma = null;
+    			Retangulo r = (Retangulo) novaForma;
+    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
+    			
+    			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
 //    			Triangulo t = (Triangulo) novaForma;
@@ -255,7 +255,9 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Retangulo.class)){
-    			
+    			Retangulo r = (Retangulo) novaForma;
+    			r.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
     			

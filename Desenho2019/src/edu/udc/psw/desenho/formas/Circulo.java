@@ -121,12 +121,12 @@ public class Circulo implements FormaGeometrica{
 			Ponto a = new Ponto(x, y);
 			
 			circulo = circulo.substring(i+1);
-//			i = circulo.indexOf(' ');
-			//x = Integer.parseInt(circulo.substring(0, i));
-			//y = Integer.parseInt(circulo.substring(i +1, circulo.length()));
-			double z = Double.parseDouble(circulo.substring(0, circulo.length()));
+			i = circulo.indexOf(' ');
+			x = Integer.parseInt(circulo.substring(0, i));
+			y = Integer.parseInt(circulo.substring(i +1, circulo.length()));
+//			double z = Double.parseDouble(circulo.substring(0, circulo.length()));
 			
-			y = (int) z;
+//			y = (int) z;
 			Ponto b = new Ponto(x,y);
 			
 			return new Circulo(a, b);
@@ -142,7 +142,8 @@ public class Circulo implements FormaGeometrica{
 	}
 	
 	public String toString(){
-		return String.format("%s %s",a, String.valueOf(Raio()));
+//		return String.format("%s %s",a, String.valueOf(Raio()));
+		return String.format("%s %s",a, b);
 	}
 
 }

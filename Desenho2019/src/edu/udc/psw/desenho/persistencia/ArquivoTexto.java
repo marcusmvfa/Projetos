@@ -49,7 +49,7 @@ private String str;
 						doc.inserir(linha);
 					}
 					if(corte[0].equals("Circulo")){
-						FormaGeometrica circulo = Circulo.fabricar(corte[1] + " " + corte[2] + " " + corte[3]);
+						FormaGeometrica circulo = Circulo.fabricar(corte[1] + " " + corte[2] + " " + corte[3] + " " + corte[4]);
 						doc.inserir(circulo);
 					}
 					if(corte[0].equals("Retangulo")){

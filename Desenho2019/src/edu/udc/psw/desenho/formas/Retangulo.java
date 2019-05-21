@@ -8,10 +8,14 @@ import edu.udc.psw.desenho.formas.manipulador.ManipuladorRetangulo;
 public class Retangulo implements FormaGeometrica {
 	private Ponto a = null;
 	private Ponto b = null;
+	private Ponto c = null;
+	private Ponto d = null;
 	
 	public Retangulo(){
 		a = new Ponto();
 		b = new Ponto();
+		c = new Ponto();
+		d = new Ponto();
 	}
 	
 	public Retangulo(Ponto a, Ponto b){
@@ -19,9 +23,23 @@ public class Retangulo implements FormaGeometrica {
 		this.b = b;
 	}
 	
+	public Retangulo(Ponto a, Ponto b, Ponto c, Ponto d){
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+	}
+	
 	public Retangulo(int ax, int ay, int bx, int by){
 		a = new Ponto(ax, ay);
 		b = new Ponto(bx, by);
+	}
+	
+	public Retangulo(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy){
+		a = new Ponto(ax, ay);
+		b = new Ponto(bx, by);
+		c = new Ponto(cx, cy);
+		d = new Ponto(dx, dy);
 	}
 	
 	public Ponto getA(){
@@ -38,6 +56,22 @@ public class Retangulo implements FormaGeometrica {
 
 	public void setB(Ponto b){
 		this.b = b;
+	}
+	
+	public Ponto getC(){
+		return c;
+	}
+
+	public Ponto getD(){
+		return d;
+	}
+
+	public void setC(Ponto c){
+		this.c = c;
+	}
+
+	public void setD(Ponto d){
+		this.d = d;
 	}
 	
 	public Ponto centro(){
@@ -125,7 +159,7 @@ public class Retangulo implements FormaGeometrica {
 			y = Integer.parseInt(retangulo.substring(i +1, retangulo.length()));
 			Ponto b = new Ponto(x,y);
 			
-			return new Linha(a, b);
+			return new Retangulo(a, b);
 		}
 		return null;
 //		

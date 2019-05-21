@@ -9,6 +9,8 @@ public class Triangulo implements FormaGeometrica{
 	private Ponto a;
 	private Ponto b;
 	private Ponto c;
+	private double meio;
+	private double distB_C;
 	
 	public Triangulo() {
 		a = new Ponto();
@@ -70,14 +72,15 @@ public class Triangulo implements FormaGeometrica{
 
 	
 	public double base() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (a.getX() - b.getX());
 	}
 
 	
 	public double altura() {
-		// TODO Auto-generated method stub
-		return 0;
+		meio = (base() / 2);
+		distB_C = b.distancia(c);
+		
+		return Math.sqrt((meio * meio) + (distB_C * distB_C));
 	}
 
 	
@@ -93,8 +96,53 @@ public class Triangulo implements FormaGeometrica{
 	}
 	@Override
 	public void desenhar(Graphics g) {
-		// TODO Auto-generated method stub
 		
+		int xa = 0;
+		try {
+			xa = (int) this.getA().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int xb = 0;
+		try {
+			xb = (int) this.getB().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int xc = 0;
+		try {
+			xc = (int) this.getC().getX();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int ya = 0;
+		try {
+			ya = (int) this.getA().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int yb = 0;
+		try {
+			yb = (int) this.getB().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int yc = 0;
+		try {
+			yc = (int) this.getC().getY();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		g.drawLine(xa, ya, xb, yb);
+		g.drawLine(xb, yb, xc, yc);
+		g.drawLine(xc, yc, xa, ya);
 	}
 
 	public FormaGeometrica fabricar(String forma) {
@@ -105,6 +153,10 @@ public class Triangulo implements FormaGeometrica{
 	public byte[] toArray() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public String toString(){
+		return String.format("%s %s %s", a, b, c);
 	}
 
 }

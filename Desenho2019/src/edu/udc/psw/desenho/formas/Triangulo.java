@@ -145,8 +145,33 @@ public class Triangulo implements FormaGeometrica{
 		g.drawLine(xc, yc, xa, ya);
 	}
 
-	public FormaGeometrica fabricar(String forma) {
-		// TODO Auto-generated method stub
+	public static FormaGeometrica fabricar(String triangulo) {
+		if(!triangulo.isEmpty()){
+			int i = triangulo.indexOf(' ');
+			int x = Integer.parseInt(triangulo.substring(0, i));
+			triangulo = triangulo.substring(i + 1);
+			i = triangulo.indexOf(' ');
+			int y = Integer.parseInt(triangulo.substring(0, i));
+			Ponto a = new Ponto(x, y);
+			
+			triangulo = triangulo.substring(i+1);
+			i = triangulo.indexOf(' ');
+			x = Integer.parseInt(triangulo.substring(0, i));
+			triangulo = triangulo.substring(i + 1);
+			i = triangulo.indexOf(' ');
+			y = Integer.parseInt(triangulo.substring(0, i));
+			Ponto b = new Ponto(x,y);
+			
+			i = triangulo.indexOf(' ');
+			triangulo = triangulo.substring(i + 1);
+			i = triangulo.indexOf(' ');
+			x = Integer.parseInt(triangulo.substring(0, i));
+			triangulo = triangulo.substring(i + 1);
+			y = Integer.parseInt(triangulo.substring(0, triangulo.length()));
+			Ponto c = new Ponto(x,y);
+			
+			return new Triangulo(a, b, c);
+		}
 		return null;
 	}
 	@Override

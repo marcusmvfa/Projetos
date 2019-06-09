@@ -32,6 +32,8 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
 	private ManipuladorFormaGeometrica manipulador;
 	private ManipuladorPonto maniPonto;
 	
+	private Boolean isDesenhando = false;
+	
 	public PainelDesenho(JLabel status, Documento doc) {
 		this.status = status;
 		this.doc = doc;
@@ -91,7 +93,6 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     public void mouseClicked( MouseEvent event )
     {
     	if(novaForma != null){
-    		manipulador.click(event.getPoint().x, event.getPoint().y);
     		if(novaForma.getClass().equals(Ponto.class)){
     			
     			
@@ -121,24 +122,29 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
+    			Triangulo t = (Triangulo) novaForma;
 
-    			manipulador.click(event.getPoint().x, event.getPoint().y);
-    			//    			Triangulo t = (Triangulo) novaForma;
-//    			t.setA(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			doc.inserir(novaForma);
-//    			
-//    			novaForma = null;
+    			System.out.println(isDesenhando);
+    			if(t.getB() != null && isDesenhando == true) {
+    				//t.setC(new Ponto(event.getPoint().x, event.getPoint().y));
+    				System.out.println("Clicked C " + t.getC());
+    				formasAlteradas();
+    				isDesenhando = false;
+    				doc.inserir(novaForma);
+    			}   			
+    			
+    				novaForma = null; 			
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
     			Circulo c = (Circulo) novaForma;
     			c.setA(new Ponto(event.getPoint().x, event.getPoint().y));
     			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    			doc.inserir(novaForma);
     			
     			
     			novaForma = null;
     		}
-    		doc.inserir(novaForma);
+    		
     		
     		//Máquina de Estados é o manipulador
     		//uma forma de resolver o problema do triangulo é utilizar o esquema de
@@ -153,6 +159,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando mouse é pressionado
     public void mousePressed( MouseEvent event )
     {
+    	
     	if(novaForma != null){
     		if(novaForma.getClass().equals(Ponto.class)){
     			
@@ -176,12 +183,13 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			
-    			manipulador.press(event.getPoint().x, event.getPoint().y);
-    			//Triangulo t = (Triangulo) novaForma;
-    			//t.setA(new Ponto(event.getPoint().x, event.getPoint().y));
-    			//t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-//    			t.setC(new Ponto(event.getPoint().x, event.getPoint().y));
+    			Triangulo t = (Triangulo) novaForma;
+    			if(isDesenhando == false) {
+    				t.setA(new Ponto(event.getPoint().x, event.getPoint().y));
+    				t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    				isDesenhando = true;    				
+    			}
+    			System.out.println("Pressed A " + t.getA());
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
@@ -190,6 +198,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			c.setB(new Ponto(event.getPoint().x, event.getPoint().y));
     			formasAlteradas();
     		}
+    		
     		
     	}
        status.setText( String.format( "Pressed at [%d, %d] - Total pontos %d", 
@@ -201,10 +210,6 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     {
     	if(novaForma != null){
     		if(novaForma.getClass().equals(Ponto.class)){
-    			
-    			manipulador.click(event.getPoint().x, event.getPoint().y);
-    			
-    			
     			Ponto p = (Ponto) novaForma;
     			p.setX(event.getPoint().x);
     			p.setY(event.getPoint().y);
@@ -227,14 +232,11 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			novaForma = null;
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			
-    			manipulador.release(event.getPoint().x, event.getPoint().y);
-    			//Triangulo t = (Triangulo) novaForma;
-    			//t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
-    			//t.setC(new Ponto(event.getPoint().x, event.getPoint().y));
-    			doc.inserir(novaForma);
-    			
-    			novaForma = null;
+    			Triangulo t = (Triangulo) novaForma;
+    			if(isDesenhando == true) {	
+    					t.setB(new Ponto(event.getPoint().x, event.getPoint().y));
+    					System.out.println("Release B" + t.getB());    				
+    			}			
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
     			Circulo c = (Circulo) novaForma;
@@ -243,7 +245,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			
     			novaForma = null;
     		}
-    		
+//    		doc.inserir(novaForma);
     	}
        status.setText( String.format( "Released at [%d, %d] - Total pontos %d", 
           event.getX(),event.getY(), doc.getListSize() ) );
@@ -269,6 +271,7 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     // trata evento quando usuário arrasta o mouse com o botão pressionado
     public void mouseDragged( MouseEvent event )
     {
+    	
     	if(novaForma != null){
     		if(novaForma.getClass().equals(Ponto.class)){
     			Ponto p = (Ponto) novaForma;
@@ -287,7 +290,11 @@ public class PainelDesenho extends JPanel implements MouseListener, MouseMotionL
     			formasAlteradas();
     		}
     		else if(novaForma.getClass().equals(Triangulo.class)){
-    			manipulador.drag(event.getPoint().x, event.getPoint().y);
+    			Triangulo t = (Triangulo) novaForma;
+    			if(t.getB() != null) {
+    				t.setC(new Ponto(event.getPoint().x, event.getPoint().y));
+    				formasAlteradas();
+    			}
     		}
     		else if(novaForma.getClass().equals(Circulo.class)){
     			Circulo c = (Circulo) novaForma;

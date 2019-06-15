@@ -41,9 +41,25 @@ public class FrameDesenho extends JFrame {
 		mnArquivo.setMnemonic('A');
 		menuBar.add(mnArquivo);
 		
-		JMenuItem mntmSalvar = new JMenuItem("Salvar");
-		mntmSalvar.setMnemonic('S');
-		mntmSalvar.addActionListener(new ActionListener() {
+		
+		JMenu mnArquivoTxt = new JMenu("Arquivo Txt");
+//		mnArquivo.setMnemonic('A');
+		mnArquivo.add(mnArquivoTxt);
+		
+		JMenu mnArquivoSerial = new JMenu("Arquivo Serial");
+		mnArquivo.add(mnArquivoSerial);
+		
+		JMenuItem mntmSalvarTxt = new JMenuItem("Salvar");
+		JMenuItem mntmLerTxt = new JMenuItem("Ler");
+		mnArquivoTxt.add(mntmSalvarTxt);
+		mnArquivoTxt.add(mntmLerTxt);
+		
+		JMenuItem mntmSalvarSerial = new JMenuItem("Salvar");
+		JMenuItem mntmLerSerial = new JMenuItem("Ler");
+		mnArquivoSerial.add(mntmSalvarSerial);
+		mnArquivoSerial.add(mntmLerSerial);
+		
+		mntmSalvarTxt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				File f = escolherArquivo(true);
 				if(f == null)
@@ -51,12 +67,18 @@ public class FrameDesenho extends JFrame {
 				Aplicacao.getAplicacao().getDocumentAtivo().salvarFormas(f);
 			}
 		});
-		
-		mnArquivo.add(mntmSalvar);
+		mntmSalvarSerial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				File f = escolherArquivo(true);
+				if(f == null)
+					return;
+				Aplicacao.getAplicacao().getDocumentAtivo().salvarFormasSerial(f);
+			}
+		});
 		
 		JMenuItem mntmLer = new JMenuItem("Ler");
 		mntmLer.setMnemonic('L');
-		mntmLer.addActionListener(new ActionListener() {
+		mntmLerTxt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				File f = escolherArquivo(false);
 				if(f == null)
@@ -64,7 +86,15 @@ public class FrameDesenho extends JFrame {
 				Aplicacao.getAplicacao().getDocumentAtivo().lerFormas(f);
 			}
 		});
-		mnArquivo.add(mntmLer);
+		
+		mntmLerSerial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File f = escolherArquivo(false);
+				if(f == null)
+					return;
+				Aplicacao.getAplicacao().getDocumentAtivo().lerFormasSerial(f);
+			}
+		});
 		
 		JMenu mnForma = new JMenu("Formas");
 		mnForma.setMnemonic('F');

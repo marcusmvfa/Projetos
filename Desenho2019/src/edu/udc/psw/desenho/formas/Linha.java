@@ -143,7 +143,10 @@ public class Linha implements FormaGeometrica {
 			linha = linha.substring(i+1);
 			i = linha.indexOf(' ');
 			x = Integer.parseInt(linha.substring(0, i));
-			y = Integer.parseInt(linha.substring(i +1, linha.length()));
+			linha = linha.substring(i+1);
+			i = linha.indexOf(' ');
+			y = Integer.parseInt(linha.substring(0, linha.length()));
+//			y = Integer.parseInt(linha.substring(i +1, linha.indexOf(' ')));
 			Ponto b = new Ponto(x,y);
 			
 			return new Linha(a, b);

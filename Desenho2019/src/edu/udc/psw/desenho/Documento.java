@@ -1,10 +1,13 @@
 package edu.udc.psw.desenho;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import edu.udc.psw.desenho.formas.FormaGeometrica;
 import edu.udc.psw.desenho.gui.PainelOuvinteFormas;
 import edu.udc.psw.desenho.persistencia.ArquivoFormas;
+import edu.udc.psw.desenho.persistencia.ArquivoSerial;
 import edu.udc.psw.desenho.persistencia.ArquivoTexto;
 import edu.udc.psw.util.Iterator;
 import edu.udc.psw.util.LinkedList;
@@ -14,6 +17,8 @@ public class Documento {
 	//se o arquivo que está aberto já foi salvo alguma vez, então salva automaticamente
 	//se não tiver salvo nenhuma
 	private ArquivoFormas arq;
+	private FileOutputStream arqSerial;
+	private ArquivoSerial arqSerialInput;
 	private LinkedList<FormaGeometrica> lista;
 	private LinkedList<PainelOuvinteFormas> listaOuvintes;
 	
@@ -66,6 +71,12 @@ public class Documento {
 
 		arq.salvarFormas(lista.getFirst());
 	}
+	
+	public void salvarFormasSerial(File file) {
+		arqSerialInput = new ArquivoSerial(file);
+		
+		arqSerialInput.salvarFormas(lista.getFirst());
+	}
 
 	// Metodo ContextInterface da classe Context no padrão Strategy
 	public void lerFormas(File file) {
@@ -81,5 +92,12 @@ public class Documento {
 		arq.lerFormas(this);
 
 //		atualizaViews();
+	}
+	
+	public void lerFormasSerial(File file) {
+		arq = new ArquivoSerial(file);
+		lista.limparLista();
+		arq.lerFormas(this);
+		
 	}
 }
